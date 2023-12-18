@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BENEVOLENCE_ARGPARSE
+#define BENEVOLENCE_ARGPARSE
 
 #include <iostream>
 #include <string>
@@ -75,3 +76,5 @@ public:
         program_name = name;
     }
 };
+
+#endif
