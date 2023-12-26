@@ -10,8 +10,8 @@ class Argument_parser {
 private:
     std::unordered_map<std::string, std::string> argument_descriptions;
     std::unordered_map<std::string, std::string> arguments;
-    std::unordered_map<std::string, bool>        optional_arguments;
-    std::string                                  program_name;
+    std::unordered_map<std::string, bool> optional_arguments;
+    std::string program_name;
 
     bool validate_arguments() const {
         for (const auto& desc : argument_descriptions) {
@@ -29,7 +29,7 @@ public:
 
     void add_argument(const std::string& name, const std::string& description, bool is_optional = false) {
         argument_descriptions[name] = description;
-        optional_arguments[name]    = is_optional;
+        optional_arguments[name] = is_optional;
     }
 
     bool parse(int argc, char* argv[]) {
@@ -39,7 +39,6 @@ public:
                 arguments[arg] = argv[i + 1];
             }
         }
-
         return validate_arguments();
     }
 
