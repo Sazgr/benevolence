@@ -1,7 +1,24 @@
 #include "argparse.h"
+#include "constants.h"
 #include "dataloader.h"
-#include "settings.h"
+#include "data_entry.h"
 #include "timer.h"
+
+//file           priority  done?
+//dataloader.cpp *****
+//dataloader.h   *****
+//gradients.h    *****     DONE
+//lrscheduler.h  **
+//nn.cpp         ***
+//nn.h           ***
+//optimizer.cpp  **
+//optimizer.h    **
+//quantize.cpp   *
+//quantize.h     *
+//trainer.cpp    ****
+//trainer.h      ****
+
+//todo: make sure converting works, make sure loading works
 
 int main(int argc, char* argv[]) {
     Argument_parser parser;
@@ -29,6 +46,7 @@ int main(int argc, char* argv[]) {
     const int num_batches = 1000;
     for (int i{}; i < num_batches; ++i) {
         data_loader.load_batch();
+        //std::cout << data_loader.buffer[0] << '\n';
     }
     std::cout << num_batches * batch_size << " positions loaded in " << timer.elapsed() << " seconds" << std::endl;
     std::cout << num_batches * batch_size / timer.elapsed() / 1000000 << " mpos/s" << std::endl;

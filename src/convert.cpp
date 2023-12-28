@@ -125,9 +125,9 @@ int main(int argc, char* argv[]) {
                 packed_entry.occupied |= (1ull << i);
                 int piece_count = popcount(packed_entry.occupied);
                 if (piece_count & 1) {
-                    packed_entry.pieces[piece_count << 1] |= (static_cast<u8>(board[i]) << 4);
+                    packed_entry.pieces[piece_count >> 1] |= (static_cast<u8>(board[i]) << 4);
                 } else {
-                    packed_entry.pieces[piece_count << 1] |= static_cast<u8>(board[i]);
+                    packed_entry.pieces[piece_count >> 1] |= static_cast<u8>(board[i]);
                 }
             }
         }
