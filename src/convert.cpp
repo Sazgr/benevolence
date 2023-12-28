@@ -70,6 +70,9 @@ int main(int argc, char* argv[]) {
             ++corrupted;
             continue;
         }
+        Packed_entry packed_entry{};
+        packed_entry.eval = std::stoi(tokens[7]);
+        if (packed_entry.eval == 32002) continue;
         bool bad = false;
         int board[64]{
             12, 12, 12, 12, 12, 12, 12, 12,
@@ -119,7 +122,6 @@ int main(int argc, char* argv[]) {
             ++corrupted;
             continue;
         }
-        Packed_entry packed_entry{};
         for (int i{}; i<64; ++i) {
             if (board[i] != 12) {
                 packed_entry.occupied |= (1ull << i);
@@ -135,7 +137,6 @@ int main(int argc, char* argv[]) {
         if (tokens[6] == "[0.0]") packed_entry.result = packed_entry.side_to_move ? -1 : 1;
         if (tokens[6] == "[0.5]") packed_entry.result = 0;
         if (tokens[6] == "[1.0]") packed_entry.result = packed_entry.side_to_move ? 1 : -1;
-        packed_entry.eval = std::stoi(tokens[7]);
         //occupied-8 piecelist-16 result-2 score-1 stm-1;
         out.write(reinterpret_cast<char*>(&packed_entry), sizeof(packed_entry));
         ++n;
