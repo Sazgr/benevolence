@@ -3,7 +3,9 @@
 
 #include "types.h"
 
-constexpr int batch_size = 16384;
+constexpr u64 read_size = 32768;
+constexpr u64 batch_size = 16384;
+constexpr u64 chunk_size = 1 << 16;
 
 constexpr int buckets = 1;
 constexpr int input_size = 12 * 64 * buckets;

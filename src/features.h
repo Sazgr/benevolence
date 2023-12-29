@@ -2,6 +2,7 @@
 #define BENEVOLENCE_FEATURES
 
 #include "types.h"
+#include <array>
 
 struct Features {
     std::array<std::array<i16, 2>, 32> features;

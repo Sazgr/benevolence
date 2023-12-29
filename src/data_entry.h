@@ -5,7 +5,6 @@
 #include "features.h"
 #include "packed_entry.h"
 #include "types.h"
-
 #include <array>
 
 struct Data_entry {
@@ -13,7 +12,13 @@ struct Data_entry {
     i16 eval;
     i8 result;
     bool side_to_move;
+    Data_entry() : features(), eval(), result(), side_to_move() {}
     Data_entry(Packed_entry pe) {
+        eval = pe.eval / eval_scale;
+        result = pe.result;
+        side_to_move = pe.side_to_move;
+    }
+    void load_entry(Packed_entry pe) {
         eval = pe.eval / eval_scale;
         result = pe.result;
         side_to_move = pe.side_to_move;

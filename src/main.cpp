@@ -44,11 +44,11 @@ int main(int argc, char* argv[]) {
     std::cout << "testing loading speed..." << std::endl;
     Timer timer;
     const int num_batches = 1000;
-    for (int i{}; i < num_batches; ++i) {
-        data_loader.load_batch();
+     for (int i{}; i < num_batches; ++i) {
+        data_loader.load_from_file();
         //std::cout << data_loader.buffer[0] << '\n';
     }
-    std::cout << num_batches * batch_size << " positions loaded in " << timer.elapsed() << " seconds" << std::endl;
-    std::cout << num_batches * batch_size / timer.elapsed() / 1000000 << " mpos/s" << std::endl;
+    std::cout << num_batches * chunk_size << " positions loaded in " << timer.elapsed() << " seconds" << std::endl;
+    std::cout << num_batches * chunk_size / timer.elapsed() / 1000000 << " mpos/s" << std::endl;
     return 0;
 }
