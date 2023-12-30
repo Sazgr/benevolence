@@ -7,7 +7,7 @@ void Data_loader::load_from_file() {
     u64 bytes_read = reader.gcount();
     u64 positions_read = bytes_read / sizeof(Packed_entry);
     while (positions_read != chunk_size) {
-        reader = std::ifstream(input_file_path, std::ios::binary);
+        if (positions_read != read_size) reader = std::ifstream(input_file_path, std::ios::binary);
         reader.read(reinterpret_cast<char*>((&buffer[positions_read])), sizeof(Packed_entry) * std::min(read_size, chunk_size - positions_read));
         bytes_read = reader.gcount();
         positions_read += bytes_read / sizeof(Packed_entry);
@@ -17,13 +17,13 @@ void Data_loader::load_from_file() {
 void Data_loader::load_from_buffer() {
 #pragma omp parallel for schedule(static) num_threads(threads)
     for (u64 i = 0; i < chunk_size; ++i) {
-        current_data[i].load_entry(buffer[i]);
+        current_data[i].load(buffer[i]);
     }
 }
 
 void Data_loader::load_next_batch() {
     if (position_index >= chunk_size) {
-        if (reading_thread.joinable()) {
+        if (background_loading && reading_thread.joinable()) {
             reading_thread.join();
         }
         position_index = 0;

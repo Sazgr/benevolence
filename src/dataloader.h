@@ -18,7 +18,7 @@ class Data_loader {
 public:
     std::array<Packed_entry, chunk_size> buffer;
     Data_loader(const std::string& path, const bool bg = false) : input_file_path(path), reader(path, std::ios::binary), background_loading(bg) {
-        //init();
+        init();
     }
     void load_from_file();
     void load_from_buffer();

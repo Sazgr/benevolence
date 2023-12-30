@@ -124,13 +124,15 @@ int main(int argc, char* argv[]) {
         }
         for (int i{}; i<64; ++i) {
             if (board[i] != 12) {
-                packed_entry.occupied |= (1ull << i);
                 int piece_count = popcount(packed_entry.occupied);
-                if (piece_count & 1) {
+                if (!(piece_count & 1)) {
                     packed_entry.pieces[piece_count >> 1] |= (static_cast<u8>(board[i]) << 4);
                 } else {
                     packed_entry.pieces[piece_count >> 1] |= static_cast<u8>(board[i]);
                 }
+                packed_entry.occupied |= (1ull << i);
+                if (board[i] == 10) packed_entry.king_square[0] = i;
+                if (board[i] == 11) packed_entry.king_square[1] = i;
             }
         }
         packed_entry.side_to_move = (tokens[1][0] == 'w');

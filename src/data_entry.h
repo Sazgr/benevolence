@@ -18,7 +18,7 @@ struct Data_entry {
         result = pe.result;
         side_to_move = pe.side_to_move;
     }
-    void load_entry(Packed_entry pe) {
+    void load(Packed_entry pe) {
         eval = pe.eval / eval_scale;
         result = pe.result;
         side_to_move = pe.side_to_move;

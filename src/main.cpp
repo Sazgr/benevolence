@@ -40,15 +40,16 @@ int main(int argc, char* argv[]) {
     std::string dataset_path = parser.get_argument_value("--data");
     std::cout << "dataset path - " << dataset_path << "\n";
     std::cout << std::endl;
-    Data_loader data_loader(dataset_path);
+    Data_loader data_loader(dataset_path, false);
     std::cout << "testing loading speed..." << std::endl;
     Timer timer;
-    const int num_batches = 1000;
-     for (int i{}; i < num_batches; ++i) {
+    const int num_chunks = 1000;
+    for (int i{}; i < num_chunks; ++i) {
+        data_loader.load_from_buffer();
         data_loader.load_from_file();
         //std::cout << data_loader.buffer[0] << '\n';
     }
-    std::cout << num_batches * chunk_size << " positions loaded in " << timer.elapsed() << " seconds" << std::endl;
-    std::cout << num_batches * chunk_size / timer.elapsed() / 1000000 << " mpos/s" << std::endl;
+    std::cout << num_chunks * chunk_size << " positions loaded in " << timer.elapsed() << " seconds" << std::endl;
+    std::cout << num_chunks * chunk_size / timer.elapsed() / 1000000 << " mpos/s" << std::endl;
     return 0;
 }
