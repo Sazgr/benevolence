@@ -45,6 +45,7 @@ static inline int king_bucket(int king_square, bool king_color) {
 static inline int index(int piece, int square, bool view, int king_square) {
     const int piece_color = !(piece & 1);
     const int piece_type = piece >> 1;
+    square ^= (56 * view);
     square ^= (7 * !!(king_square & 0x4));
     return square + (piece_type) * 64 + !(piece_color ^ view) * 64 * 6 + king_bucket(king_square, view) * 64 * 12;
 }
