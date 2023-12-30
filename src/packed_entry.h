@@ -13,6 +13,9 @@ struct Packed_entry {
     bool side_to_move{};                  //1
     std::array<u8, 2> king_square{64, 64};//2
     std::array<u8, 2> padding;            //2
+    u8 piece(int index) {
+        return (index & 1) ? (pieces[index >> 1] & 15) : (pieces[index >> 1] >> 4);
+    }
 };
 
 std::ostream& operator<<(std::ostream& out, Packed_entry pe);

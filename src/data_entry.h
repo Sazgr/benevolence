@@ -22,6 +22,13 @@ struct Data_entry {
         eval = pe.eval / eval_scale;
         result = pe.result;
         side_to_move = pe.side_to_move;
+        features.clear();
+        u64 bb = pe.occupied;
+        for (int i{}; bb != 0; ++i) {
+            int square = pop_lsb(bb);
+            int piece = pe.piece(i);
+            features.add(index(piece, square, 0, pe.king_square[0]), index(piece, square, 1, pe.king_square[1]));
+        }
     }
     const float wdl() const {
         return (result + 1.0f) / 2.0f;

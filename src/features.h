@@ -6,16 +6,16 @@
 
 struct Features {
     std::array<std::array<i16, 2>, 32> features;
-    u8 n = 0;
-    u8 stm;
-    inline void add(int16_t feature_black, int16_t feature_white) {
-        features[n][0] = feature_black;
-        features[n][1] = feature_white;
-        ++n;
+    u8 count = 0;
+    u8 side_to_move = 0;
+    inline void add(i16 feature_black, i16 feature_white) {
+        features[count][0] = feature_black;
+        features[count][1] = feature_white;
+        ++count;
     }
     inline void clear() {
-        stm = 0;
-        n = 0;
+        count = 0;
+        side_to_move = 0;
     }
     std::array<i16, 2>& operator[](int index) {
         return features[index];
