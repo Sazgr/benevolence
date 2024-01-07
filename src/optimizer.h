@@ -1,5 +1,5 @@
-#ifndef BENEVOLENDE_OPTIMIZER
-#define BENEVOLENDE_OPTIMIZER
+#ifndef BENEVOLENCE_OPTIMIZER
+#define BENEVOLENCE_OPTIMIZER
 
 #include "gradients.h"
 #include <iostream>
