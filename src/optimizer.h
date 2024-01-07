@@ -1,3 +1,9 @@
+#ifndef BENEVOLENDE_OPTIMIZER
+#define BENEVOLENDE_OPTIMIZER
+
+#include "gradients.h"
+#include <iostream>
+
 constexpr float default_beta1 = 0.9f;
 constexpr float default_beta2 = 0.999f;
 constexpr float default_epsilon = 0.00000001f;
@@ -23,3 +29,5 @@ public:
         return os;
     }
 };
+
+#endif
