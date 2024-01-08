@@ -3,6 +3,7 @@
 
 #include "constants.h"
 #include <array>
+#include <cstring>
 
 struct Gradient {
     float m = 0;
@@ -14,7 +15,8 @@ struct Gradient {
     }
 };
 
-class <typename T> Net_gradients {
+template <typename T>
+class Net_gradients {
 public:
     std::array<T, input_size * hidden_size> input_features;
     std::array<T, hidden_size> input_bias;
