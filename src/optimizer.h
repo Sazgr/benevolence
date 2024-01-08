@@ -2,6 +2,7 @@
 #define BENEVOLENCE_OPTIMIZER
 
 #include "gradients.h"
+#include <cmath>
 #include <iostream>
 
 constexpr float default_beta1 = 0.9f;
