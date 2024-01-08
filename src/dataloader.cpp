@@ -1,6 +1,7 @@
 #include "constants.h"
 #include "dataloader.h"
 #include <iostream>
+#include <omp.h>
 
 void Data_loader::load_from_file() {
     reader.read(reinterpret_cast<char*>(&buffer), sizeof(Packed_entry) * read_size);
@@ -15,7 +16,7 @@ void Data_loader::load_from_file() {
 }
 
 void Data_loader::load_from_buffer() {
-#pragma omp parallel for schedule(static) num_threads(threads)
+    #pragma omp parallel for schedule(static) num_threads(8)
     for (u64 i = 0; i < chunk_size; ++i) {
         current_data[i].load(buffer[i]);
     }
