@@ -9,7 +9,7 @@
 
 struct Data_entry {
     Features features;
-    i16 eval;
+    float eval;
     i8 result;
     bool side_to_move;
     Data_entry() : features(), eval(), result(), side_to_move() {}
