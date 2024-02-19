@@ -14,13 +14,15 @@ inline const T sigmoid_prime(const T x){
     return sig * (1 - sig);
 }
 
-inline float error_function(float output, float eval, float wdl) {
-    float expected = eval_cp_ratio * sigmoid(eval) + (1 - eval_cp_ratio) * wdl;
+inline float expected_eval(float eval, float wdl, float lambda) {
+    return lambda * sigmoid(eval) + (1 - lambda) * wdl;
+}
+
+inline float error_function(float output, float expected) {
     return pow(sigmoid(output) - expected, 2);
 }
 
-inline float error_gradient(float output, float eval, float wdl) {
-    float expected = eval_cp_ratio * sigmoid(eval) + (1 - eval_cp_ratio) * wdl;
+inline float error_gradient(float output, float expected) {
     return 2 * (sigmoid(output) - expected);
 }
 
