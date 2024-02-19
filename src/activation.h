@@ -5,31 +5,34 @@
 
 template <typename T>
 class Relu {
-    T operator()(const T x) {
+public:
+    T operator()(const T x) const {
         return std::max<T>(0, x);
     }
-    T prime(const T x) {
+    T prime(const T x) const {
         return x > 0 ? 1 : 0;
     }
 };
 
 template <typename T>
 class Crelu {
-    T operator()(const T x) {
-        return std::clamp<T>(0, x);
+public:
+    T operator()(const T x) const {
+        return std::clamp<T>(x, 0, 1);
     }
-    T prime(const T x) {
+    T prime(const T x) const {
         return (x > 0 && x < 1) ? 1 : 0;
     }
 };
 
 template <typename T>
 class Screlu {
-    T operator()(const T x) {
-        T clipped = std::clamp<T>(0, x);
+public:
+    T operator()(const T x) const {
+        T clipped = std::clamp<T>(x, 0, 1);
         return clipped * clipped;
     }
-    T prime(const T x) {
+    T prime(const T x) const {
         return (x > 0 && x < 1) ? (2 * x) : 0;
     }
 };
