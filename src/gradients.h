@@ -20,8 +20,8 @@ class Net_gradients {
 public:
     std::array<T, input_size * hidden_size> input_features;
     std::array<T, hidden_size> input_bias;
-    std::array<T, hidden_size * 2> hidden_features;
-    std::array<T, output_size> hidden_bias;
+    std::array<T, hidden_size * 2 * output_buckets> hidden_features;
+    std::array<T, output_size * output_buckets> hidden_bias;
 
     Net_gradients() {
         clear();
@@ -30,8 +30,8 @@ public:
     void clear() {
         std::memset(input_features.data(), 0, sizeof(T) * input_size * hidden_size);
         std::memset(input_bias.data(), 0, sizeof(T) * hidden_size);
-        std::memset(hidden_features.data(), 0, sizeof(T) * hidden_size * 2);
-        std::memset(hidden_bias.data(), 0, sizeof(T) * output_size);
+        std::memset(hidden_features.data(), 0, sizeof(T) * hidden_size * 2 * output_buckets);
+        std::memset(hidden_bias.data(), 0, sizeof(T) * output_size * output_buckets);
     }
 };
 
